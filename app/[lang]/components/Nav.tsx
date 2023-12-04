@@ -30,7 +30,7 @@ export default function Nav() {
     const [selectedIndicator, setSelectedIndicator] = useState(pathname);
 
     return (
-        <motion.div variants={menuSlide} initial="initial" animate="enter" exit="exit" className="h-screen bg-[#DB7137] fixed text-[white] right-0 top-0 box-border  p-[50px]  flex flex-col z-10">
+        <motion.div variants={menuSlide} initial="initial" animate="enter" exit="exit" className="h-screen bg-[#DB7137] fixed text-[white] right-0 top-0 box-border  p-[50px]  flex flex-col z-20">
            <div className="box-border h-full flex flex-col justify-between p-[100px];">
                 <div onMouseLeave={() => {setSelectedIndicator(pathname)}} className="flex flex-col text-[56px] gap-3 mt-20;">
                         <div className="text-[rgb(153,153,153)] uppercase text-[11px] mb-10 border-b-white border-b border-solid">

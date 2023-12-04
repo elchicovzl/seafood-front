@@ -29,7 +29,7 @@ export default async function RootRoute({params}: { params: { lang: string } }) 
                       The Best Sushi Bar <br /><span>in your <span className="text-[#DB7137]">City</span></span>
                     </h1>
                     <p className="text-white tracking-tight mb-9 sm:w-1/2 mx-auto">Way too much fish. But if it weren't for the fish, I'd have no identifiable personality whatsoever.</p>
-                    <a href="#_" className="mt-5 px-5 py-2.5 overflow-hidden group bg-[#DB7137] relative z-40  text-white">
+                    <a href="#_" className="mt-5 px-5 py-2.5 overflow-hidden group bg-[#DB7137] relative z-10  text-white">
                       <span className="relative cursor-pointer ">OUR OFFER</span>
                     </a>
                   </div>

@@ -74,7 +74,7 @@ export default function Navbar({
     return (
         <>
             <div className="">
-                <div className="p-8 fixed right-0 z-20">
+                <div className="p-8 fixed right-0 z-30">
                     <div 
                         onClick={() => {setIsActive(!isActive)}} 
                         className="w-12 h-12 rounded-full border-white border-2 bg-transparent cursor-pointer flex items-center justify-center z-20"
