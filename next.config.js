@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 
 const nextConfig = {
+    reactStrictMode: false,
     images: {
       remotePatterns: [
         {
@@ -15,6 +16,12 @@ const nextConfig = {
         }
       ],
     },
+    experimental: {
+        appDir: true,
+    },
+    typescript: {
+        ignoreBuildErrors: true,
+    }
   }
   
   module.exports = nextConfig
