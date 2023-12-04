@@ -27,7 +27,9 @@ export function middleware(request: NextRequest) {
         [
             '/manifest.json',
             '/favicon.ico',
-            '/images/bg.png'
+            '/images/bg.png',
+            '/images/roll.png',
+            '/images/logo.png'
             // Your other files in `public`
         ].includes(pathname)
     )

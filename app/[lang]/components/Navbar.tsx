@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import Nav from "./Nav";
+import Image from "next/image";
 
 interface NavLink {
     id: number;
@@ -54,6 +55,25 @@ function MobileNavLink({ url, text, closeMenu }: MobileNavLink ) {
     );
 }
 
+const navItems = [
+    {
+      title: "Home",
+      href: "/",
+    },
+    {
+      title: "Work",
+      href: "/work",
+    },
+    {
+      title: "About",
+      href: "/about",
+    },
+    {
+      title: "Contact",
+      href: "/contact",
+    },
+]
+
 export default function Navbar({
     links,
     logoUrl,
@@ -72,9 +92,20 @@ export default function Navbar({
 
 
     return (
-        <>
-            <div className="">
-                <div className="p-8 fixed right-0 z-30">
+        <div className="max-w-screen-xl flex flex-wrap justify-between mx-auto">
+            <Image className="p-10 z-20" src="/images/logo.png" width="200" height="52" alt="logo" />
+            <div className="p-10 z-20 hidden sm:block">
+                <nav className="flex flex-row gap-4">
+                {
+                    navItems.map( (data, indexx) => {
+                        const { title, href, index} = data;
+                        return <Link className="no-underline text-[white] font-light text-lg" href={href}>{title}</Link>
+                    })
+                }
+                </nav>
+            </div>
+            <div className="sm:hidden">
+                <div className="p-8 absolute right-0 z-30">
                     <div 
                         onClick={() => {setIsActive(!isActive)}} 
                         className="w-12 h-12 rounded-full border-white border-2 bg-transparent cursor-pointer flex items-center justify-center z-20"
@@ -86,7 +117,7 @@ export default function Navbar({
             <AnimatePresence mode="wait">
                 {isActive && <Nav />}
             </AnimatePresence>
-        </>
+        </div>
       
     );
 }

@@ -78,13 +78,22 @@ export default async function RootLayout({
   return (
     <html lang={params.lang}>
       <body>
-        <Navbar
-          links={[]}
-          logoUrl="www.google.com"
-          logoText="mylogo"
-        />
+        
         <main className="dark:bg-black dark:text-gray-100 min-h-screen">
-          {children}
+        <section className="mb-40 overflow-hidden">
+          <div className="relative overflow-hidden bg-cover bg-no-repeat bg-[50%] h-[650px] sm:h-[750px] bg-my_bg_image">
+            <div className="absolute top-0 right-0 bottom-0 left-0 h-full w-full overflow-hidden bg-fixed bg-[hsla(0,0%,0%,0.60)]">
+            <Navbar
+              links={[]}
+              logoUrl="www.google.com"
+              logoText="mylogo"
+            />
+            {children}
+            </div>
+          </div>
+        </section>
+
+          
         </main>
       </body>
     </html>
