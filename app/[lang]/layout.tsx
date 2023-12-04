@@ -4,6 +4,7 @@ import { getStrapiMedia, getStrapiURL } from "./utils/api-helpers";
 import { fetchAPI } from "./utils/fetch-api";
 
 import { i18n } from "../../i18n-config";
+import Navbar from "./components/Navbar";
 //import Banner from "./components/Banner";
 //import Footer from "./components/Footer";
 //import Navbar from "./components/Navbar";
@@ -77,6 +78,11 @@ export default async function RootLayout({
   return (
     <html lang={params.lang}>
       <body>
+        <Navbar
+          links={[]}
+          logoUrl="www.google.com"
+          logoText="mylogo"
+        />
         <main className="dark:bg-black dark:text-gray-100 min-h-screen">
           {children}
         </main>

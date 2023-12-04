@@ -8,6 +8,30 @@ body {
 }
 
 
+.burger {
+  @apply w-full;
+}
+.burger::after,
+.burger::before {
+  @apply content-[""] block h-px w-2/5 bg-white relative transition-transform duration-[0.3s] m-auto;
+}
+
+.burger::after {
+  @apply -top-1
+}
+
+.burger::before {
+  @apply top-1
+}
+
+.burgerActive::after {
+  @apply rotate-45 -top-px;
+}
+.burgerActive::before {
+  @apply -rotate-45 top-0;
+}
+
+
 /******************************************* 
   Rich Text Styles
 *******************************************/ 
