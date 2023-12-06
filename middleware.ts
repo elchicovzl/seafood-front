@@ -29,7 +29,24 @@ export function middleware(request: NextRequest) {
             '/favicon.ico',
             '/images/bg.png',
             '/images/roll.png',
-            '/images/logo.png'
+            '/images/logo.png',
+            '/images/patternbg.jpg',
+            '/images/fish.jpg',
+            '/images/sushi2.jpg',
+            '/images/icon1.png',
+            '/images/icon2.png',
+            '/images/bgsection.jpg',
+            '/images/fishbg.png',
+
+            '/images/ma1.jpg',
+            '/images/ma2.jpg',
+            '/images/ma3.jpg',
+            '/images/ma4.jpg',
+            '/images/ma5.jpg',
+            '/images/ma6.jpg',
+            '/images/ma7.jpg',
+
+
             // Your other files in `public`
         ].includes(pathname)
     )
