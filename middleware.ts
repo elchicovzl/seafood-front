@@ -37,6 +37,9 @@ export function middleware(request: NextRequest) {
             '/images/icon2.png',
             '/images/bgsection.jpg',
             '/images/fishbg.png',
+            '/images/sushi3.jpg',
+
+            '/images/banersushi.jpg',
 
             '/images/ma1.jpg',
             '/images/ma2.jpg',
