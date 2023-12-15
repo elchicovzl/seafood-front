@@ -3,7 +3,7 @@ interface HighlightedTextProps {
     tag: string;
     className?: string;
     color?: string;
-  }
+}
   
   export default function HighlightedText({
     text,

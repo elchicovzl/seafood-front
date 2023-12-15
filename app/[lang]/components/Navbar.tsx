@@ -14,10 +14,6 @@ interface NavLink {
     text: string;
 }
 
-interface MobileNavLink extends NavLink {
-    closeMenu: () => void;
-}
-
 function NavLink({ url, text }: NavLink) {
     const path = usePathname();
   
@@ -35,45 +31,6 @@ function NavLink({ url, text }: NavLink) {
     );
 }
 
-function MobileNavLink({ url, text, closeMenu }: MobileNavLink ) {
-    const path = usePathname();
-    const handleClick = () => {
-      closeMenu();
-    }
-    return (
-      <a className="flex">
-        <Link
-          href={url}
-          onClick={handleClick}
-          className={`-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-100 hover:bg-gray-900 ${
-            path === url && "dark:text-violet-400 dark:border-violet-400"
-          }}`}
-        >
-          {text}
-        </Link>
-      </a>
-    );
-}
-
-const navItems = [
-    {
-      title: "Home",
-      href: "/",
-    },
-    {
-      title: "Products",
-      href: "/products",
-    },
-    {
-      title: "About",
-      href: "/about",
-    },
-    {
-      title: "Contact",
-      href: "/contact",
-    },
-]
-
 export default function Navbar({
     links,
     logoUrl,
@@ -90,16 +47,15 @@ export default function Navbar({
         if(isActive) setIsActive(false)
     }, [pathname])
 
-
     return (
         <div className="max-w-screen-xl flex flex-wrap justify-between mx-auto">
-            <Image className="p-10 z-20" src="/images/logo.png" width="200" height="52" alt="logo" />
+            <Image className="p-10 z-20" src={logoUrl} width="200" height="52" alt="logo" />
             <div className="p-10 z-20 hidden sm:block">
                 <nav className="flex flex-row gap-4">
                 {
-                    navItems.map( (data, indexx) => {
-                        const { title, href, index} = data;
-                        return <Link className="no-underline text-[white] font-light text-lg" href={href}>{title}</Link>
+                    links.map( (data, indexx) => {
+                        const { text, url} = data;
+                        return <Link className="no-underline text-[white] font-light text-lg" href={url}>{text}</Link>
                     })
                 }
                 </nav>
@@ -115,7 +71,7 @@ export default function Navbar({
                 </div>
             </div>
             <AnimatePresence mode="wait">
-                {isActive && <Nav />}
+                {isActive && <Nav links={links} logoUrl={logoUrl}  />}
             </AnimatePresence>
         </div>
       

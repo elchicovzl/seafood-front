@@ -5,6 +5,13 @@ import LinkComponent from './Link';
 import { menuSlide } from "@/[lang]/utils/anim";
 import Curve from './Curve';
 
+interface NavLink {
+  id: number;
+  url: string;
+  newTab: boolean;
+  text: string;
+}
+
 const navItems = [
     {
       title: "Home",
@@ -24,7 +31,13 @@ const navItems = [
     },
 ]
 
-export default function Nav() {
+export default function Nav({
+  links,
+  logoUrl,
+}: {
+  links: Array<NavLink>;
+  logoUrl: string | null;
+}) {
 
     const pathname = usePathname();
     const [selectedIndicator, setSelectedIndicator] = useState(pathname);
@@ -37,8 +50,8 @@ export default function Nav() {
                             <p className="mt-10 text-white">Navigation</p>
                         </div>
                         {
-                          navItems.map( (data, index) => {
-                            return <LinkComponent key={index} data={{...data, index}} isActive={selectedIndicator == data.href} setSelectedIndicator={setSelectedIndicator}></LinkComponent>
+                          links.map( (data, index) => {
+                            return <LinkComponent key={index} data={{...data, index}} isActive={selectedIndicator == data.url} setSelectedIndicator={setSelectedIndicator}></LinkComponent>
                           })
                         }
                 </div>

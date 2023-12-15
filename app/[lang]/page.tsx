@@ -12,33 +12,31 @@ import BgBannerRightBoxSection from './components/BgBannerRightBoxSection';
 import TextLeftRigthImageStatisticsSection from './components/TextLeftRigthImageStatisticsSection';
 import BannerStatisticsSection from './components/BannerStatisticsSection';
 import OurProductsSection from './components/OurProductsSection';
+import { getGlobal } from './utils/get-globals';
 
 export default async function RootRoute({params}: { params: { lang: string } }) {
     try {
-     
-      //const page = await getPageBySlug('home', params.lang)
+      const global = await getGlobal(params.lang);
+      const page = await getPageBySlug('home', params.lang)
+
+      const { navbar } = global.data.attributes;
       
-      /* if (page.error && page.error.status == 401)
+      if (page.error && page.error.status == 401)
         throw new Error(
           'Missing or invalid credentials. Have you created an access token using the Strapi admin panel? http://localhost:1337/admin/'
         )
 
       if (page.data.length == 0 && params.lang !== 'en') return <LangRedirect />
       if (page.data.length === 0) return null
-      const contentSections = page.data[0].attributes.contentSections */
-      /* return contentSections.map((section: any, index: number) =>
-        sectionRenderer(section, index)
-      ) */
-      return <>
-        <HeroSection />
-        <WelcomeSection />
-        <MansorySection />
-        <BoxIconSection />
-        <BgBannerRightBoxSection />
-        <TextLeftRigthImageStatisticsSection />
-        <BannerStatisticsSection />
-        <OurProductsSection />
-      </>
+
+      console.log("page data")
+      console.log(page.data[0].attributes)
+
+      const contentSections = page.data[0].attributes.contentSections
+      return contentSections.map((section: any, index: number) =>
+        sectionRenderer(section, index, navbar)
+      )
+
     } catch (error: any) {
       window.alert('Missing or invalid credentials')
     }

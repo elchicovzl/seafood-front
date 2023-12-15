@@ -12,33 +12,9 @@ import { i18n } from "../../i18n-config";
 import { FaInstagram, FaFacebook  } from "react-icons/fa";
 import Image from 'next/image';
 import Footer from "./components/Footer";
+import { getGlobal } from "./utils/get-globals";
 
 
-async function getGlobal(lang: string): Promise<any> {
-  const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
-
-  if (!token) throw new Error("The Strapi API Token environment variable is not set.");
-
-  const path = `/global`;
-  const options = { headers: { Authorization: `Bearer ${token}` } };
-
-  const urlParamsObject = {
-    populate: [
-      "metadata.shareImage",
-      "favicon",
-      "notificationBanner.link",
-      "navbar.links",
-      "navbar.navbarLogo.logoImg",
-      "footer.footerLogo.logoImg",
-      "footer.menuLinks",
-      "footer.legalLinks",
-      "footer.socialLinks",
-      "footer.categories",
-    ],
-    locale: lang,
-  };
-  return await fetchAPI(path, urlParamsObject, options);
-}
 
 /* export async function generateMetadata({ params } : { params: {lang: string}}): Promise<Metadata> {
   const meta = await getGlobal(params.lang);
@@ -64,26 +40,41 @@ export default async function RootLayout({
   children: React.ReactNode;
   params: { lang: string };
 }) {
-  /* const global = await getGlobal(params.lang);
+  const global = await getGlobal(params.lang);
+
   // TODO: CREATE A CUSTOM ERROR PAGE
-  if (!global.data) return null; */
+  if (!global.data) return null;
   
-  //const { notificationBanner, navbar, footer } = global.data.attributes;
+  const { navbar, footer } = global.data.attributes;
+
+  console.log("global data")
+  console.log(footer.TitleLinksFooter)
 
   /* const navbarLogoUrl = getStrapiMedia(
     navbar.navbarLogo.logoImg.data.attributes.url
   );
+*/
 
   const footerLogoUrl = getStrapiMedia(
     footer.footerLogo.logoImg.data.attributes.url
-  ); */
+  );
+
+  const footerBgUrl = getStrapiMedia(
+    footer.backgroundFooter.data.attributes.url
+  );
 
   return (
     <html lang={params.lang}>
       <body>
         <main className="">
           {children}
-          <Footer />
+          <Footer
+            logoUrl={footerLogoUrl}
+            bgUrl={footerBgUrl}
+            TitleParagraphFooter={footer.TitleParagraphFooter}
+            paragraph={footer.paragraph}
+            TitleLinksFooter={footer.TitleLinksFooter}
+          />
         </main>
       </body>
     </html>
