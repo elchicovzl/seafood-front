@@ -1,6 +1,7 @@
 import BannerStatisticsSection from "../components/BannerStatisticsSection";
 import BgBannerRightBoxSection from "../components/BgBannerRightBoxSection";
 import BoxIconSection from "../components/BoxIconSection";
+import HeaderSection from "../components/HeaderSection";
 import HeroSection from "../components/HeroSection";
 import MansorySection from "../components/MansorySection";
 import OurProductsSection from "../components/OurProductsSection";
@@ -11,6 +12,8 @@ export function sectionRenderer(section: any, index: number, navbar: any) {
   console.log("secciones")
   console.log(section)
   switch (section.__component) {
+    case "sections.header-section":
+      return <HeaderSection data={section} navbar={{links: navbar.links, logoUrl:navbar.navbarLogo.logoImg.data.attributes.url}} />;
     case "sections.hero":
       return <HeroSection data={section} navbar={{links: navbar.links, logoUrl:navbar.navbarLogo.logoImg.data.attributes.url}} />;
     case "sections.welcome-section":

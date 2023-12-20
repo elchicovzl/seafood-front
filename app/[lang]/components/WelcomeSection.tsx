@@ -57,7 +57,9 @@ export default function WelcomeSection({
                         <Image className="my-10  sm:my-0 sm:w-[405px] sm:h-[600px]" src={welcomePicture} width={405} height={600} alt="sushi2"/>
                     </div>
                 </div>
-                <Carousel images={data.welcomeImages.data} />
+                {data.welcomeImages?.data?.length === 0 && (
+                    <Carousel images={data.welcomeImages.data} />
+                )}
             </section>
         </>
     )
